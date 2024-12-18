@@ -36,9 +36,25 @@ function getIntervalArray(/* start, end */) {
  *    sumArrays([1, 2, 3], [4, 5, 6]) => [5, 7, 9]
  *    sumArrays([10, 20, 30], [5, 10, 15]) => [15, 30, 45]
  *    sumArrays([-1, 0, 1], [1, 2, 3, 4]) => [0, 2, 4, 4]
+ *
+ * Old solution:
+ *
+ * const result = [];
+ * for (let i = 0; i < longestArray.length; i += 1) {
+ *   result.push((arr1[i] || 0) + (arr2[i] || 0));
+ * }
  */
-function sumArrays(/* arr1, arr2 */) {
-  throw new Error('Not implemented');
+function sumArrays(arr1, arr2) {
+  let longestArray = [];
+  if (arr1.length > arr2.length) {
+    longestArray = arr1;
+  } else longestArray = arr2;
+
+  const result = longestArray.map(
+    (value, i) => (arr1[i] || 0) + (arr2[i] || 0)
+  );
+
+  return result;
 }
 
 /**
