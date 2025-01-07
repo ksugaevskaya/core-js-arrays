@@ -323,8 +323,8 @@ function flattenArray(nestedArray) {
  *   selectMany([[1, 2], [3, 4], [5, 6]], (x) => x) =>   [ 1, 2, 3, 4, 5, 6 ]
  *   selectMany(['one','two','three'], (x) => x.split('')) =>   ['o','n','e','t','w','o','t','h','r','e','e']
  */
-function selectMany(/* arr, childrenSelector */) {
-  throw new Error('Not implemented');
+function selectMany(arr, childrenSelector) {
+  return arr.flatMap(childrenSelector);
 }
 
 /**
@@ -393,8 +393,8 @@ function generateOdds(len) {
  *   getElementByIndices(['one','two','three'], [2]) => 'three'  (arr[2])
  *   getElementByIndices([[[ 1, 2, 3]]], [ 0, 0, 1 ]) => 2        (arr[0][0][1])
  */
-function getElementByIndices(/* arr, indices */) {
-  throw new Error('Not implemented');
+function getElementByIndices(arr, indices) {
+  return indices.reduce((result, index) => result[index], arr);
 }
 
 /**
@@ -609,8 +609,24 @@ function sortDigitNamesByNumericOrder(arr) {
  *   swapHeadAndTail([]) => []
  *
  */
-function swapHeadAndTail(/* arr */) {
-  throw new Error('Not implemented');
+function swapHeadAndTail(arr) {
+  const midElement = Math.floor(arr.length / 2);
+  let head = [];
+  let mid = [];
+  let tail = [];
+
+  head = arr.slice(0, midElement);
+
+  if (arr.length % 2 === 1) {
+    mid = [arr[midElement]];
+  }
+  if (arr.length % 2 === 1) {
+    tail = arr.slice(midElement + 1);
+  } else {
+    tail = arr.slice(midElement);
+  }
+
+  return [...tail, ...mid, ...head];
 }
 
 module.exports = {
